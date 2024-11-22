@@ -40,7 +40,7 @@ public class WordGame {
             Random rand = new Random();
             List<String> countryNames = new ArrayList<>(earth.getAllCountries().keySet());
 
-            for (int i = 0; i < 1; i++) {
+            for (int i = 0; i < 10; i++) {
                 int randomIndex = rand.nextInt(countryNames.size());
                 String randomCountryName = countryNames.get(randomIndex);
                 Country country = earth.getCountry(randomCountryName);
@@ -113,7 +113,4 @@ public class WordGame {
         }
     }
 
-    private void checkHighScore() {
-
-    }
 }

@@ -34,27 +34,60 @@ public class Score {
 
     // Method to read scores from a file and return a list of Score objects
     public static List<Score> readScoresFromFile(String filename) throws IOException {
-        List<Score> scores = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+        final List<Score> scores;
+        scores = new ArrayList<>();
+
+        try (final BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+            String dateTime = null;
+
+            int gamesPlayed = 0;
+            int correctFirstAttempts = 0;
+            int correctSecondAttempts = 0;
+            int incorrectAttempts = 0;
+
             String line;
             while ((line = reader.readLine()) != null) {
-                scores.add(Score.parseScore(line));
+                if (line.startsWith("Date and Time:")) {
+                    dateTime = line.split(": ", 2)[1];
+                }
+
+                else if (line.startsWith("Games Played:")) {
+                    gamesPlayed = Integer.parseInt(line.split(": ")[1]);
+                }
+
+                else if (line.startsWith("Correct First Attempts:")) {
+                    correctFirstAttempts = Integer.parseInt(line.split(": ")[1]);
+                }
+
+                else if (line.startsWith("Correct Second Attempts:")) {
+                    correctSecondAttempts = Integer.parseInt(line.split(": ")[1]);
+                }
+
+                else if (line.startsWith("Incorrect Attempts:")) {
+                    incorrectAttempts = Integer.parseInt(line.split(": ")[1]);
+                }
+
+                else if (line.startsWith("Score:")) {
+                    assert dateTime != null;
+                    LocalDateTime dateTimeParsed = LocalDateTime.parse(dateTime, FORMATTER);
+                    scores.add(new Score(dateTimeParsed, gamesPlayed, correctFirstAttempts, correctSecondAttempts, incorrectAttempts));
+                }
             }
         }
         return scores;
     }
 
+
     // Method to parse a serialized score string
     private static Score parseScore(String line) {
         String[] parts = line.split("\n");
-        if (parts.length < 6) return null;
+        //if (parts.length < 6) return null;
 
         LocalDateTime dateTime = LocalDateTime.parse(parts[0].split(":")[1], DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         int gamesPlayed = Integer.parseInt(parts[1]);
         int correctFirstAttempts = Integer.parseInt(parts[2]);
         int correctSecondAttempts = Integer.parseInt(parts[3]);
         int incorrectAttempts = Integer.parseInt(parts[4]);
-        int score = Integer.parseInt(parts[5].split(" ")[1]);
 
         return new Score(dateTime, gamesPlayed, correctFirstAttempts, correctSecondAttempts, incorrectAttempts);
     }

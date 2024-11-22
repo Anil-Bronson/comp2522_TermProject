@@ -1,9 +1,9 @@
-import javafx.stage.Stage;
+//import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Scanner;
 
-import static javafx.application.Application.launch;
+//import static javafx.application.Application.launch;
 
 public class Main {
 
@@ -30,7 +30,7 @@ public class Main {
                 }
 
                 case "N" -> {
-                    NumberGame.launch(NumberGame.class, args);
+                    //NumberGame.launch(NumberGame.class, args);
                 }
 
                 case "M" -> System.out.println("<My game> not implemented yet!");
