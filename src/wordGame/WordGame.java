@@ -89,18 +89,44 @@ public class WordGame {
     }
 
     private void displayResults(int wordGamesPlayed, int correctFirstAttempt, int correctSecondAttempt, int incorrect) throws IOException {
+
+        final LocalDateTime time;
+        final Score userScore;
+        final List<Score> scores;
+
         System.out.printf(
                 "Game Over!\nWord games played: %d\nCorrect on First Attempt: %d\nCorrect on Second Attempt: %d\nIncorrect: %d\n",
                 wordGamesPlayed, correctFirstAttempt, correctSecondAttempt, incorrect);
 
-        LocalDateTime time = LocalDateTime.now();
-        Score score = new Score(time, wordGamesPlayed, correctFirstAttempt, correctSecondAttempt, incorrect);
 
-        Score.appendScoreToFile(score, "score.txt");
+        time = LocalDateTime.now();
+        userScore = new Score(time, wordGamesPlayed, correctFirstAttempt, correctSecondAttempt, incorrect);
+
+        Score.appendScoreToFile(userScore, "score.txt");
+
+        scores = Score.readScoresFromFile("score.txt");
+
+        // Check high score
+        final Score highScore = scores.stream()
+                .max((s1, s2) -> Integer.compare(s1.getScore(), s2.getScore()))
+                .orElse(null);
+
+        if (highScore != null && userScore.getScore() < highScore.getScore()) {
+            System.out.printf(
+                    "You did not beat the high score of %d points from %s.%n",
+                    highScore.getScore(),
+                    highScore.dateTimePlayed
+            );
+        } else {
+            System.out.println("Congratulations! You set a new high score!");
+        }
     }
 
+
     private boolean promptPlayAgain() {
+
         System.out.println("Play again? (Yes/No)");
+
         while (true) {
             String playAgain = sc.nextLine().trim().toLowerCase();
             if (playAgain.equals("yes")) {

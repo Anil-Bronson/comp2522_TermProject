@@ -30,10 +30,14 @@ public class Main {
                 }
 
                 case "N" -> {
-                    //NumberGame.launch(NumberGame.class, args);
+                    new Thread(NumberGame::startNumberGame).start();
                 }
 
-                case "M" -> System.out.println("<My game> not implemented yet!");
+
+                case "M" -> {
+                    DNAGame dnaGame = new DNAGame(sc);
+                    dnaGame.play();
+                }
 
                 case "Q" -> stillPlaying = false;
 
