@@ -6,9 +6,12 @@
       <sourceFolder url="file://$MODULE_DIR$/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/myGame" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/numberGame" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/wordGame" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/MyGame" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/MyGame(gpt v1)" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/myGame(claude ai)" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/code" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
