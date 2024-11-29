@@ -1,8 +1,4 @@
-import javafx.stage.Stage;
-import java.io.IOException;
-import java.util.Iterator;
 import java.util.Scanner;
-import static javafx.application.Application.launch;
 
 public class Main {
 
@@ -47,17 +43,13 @@ public class Main {
     }
 
     private static GameManager getGameManager() {
-        int gridSize = 3;
+
+        final int gridSize = 5;
 
         // Create players
         Player player1 = new HumanPlayer("Player 1", gridSize);
         Player player2 = new HumanPlayer("Player 2", gridSize);
 
-        // Place ships and mines for demonstration
-        //player1.placeObject(1, 1, new Ship(2));
-        //player2.placeObject(2, 2, new Mine());
-
-        // Start the game
         GameManager gameManager = new GameManager(player1, player2);
         return gameManager;
     }

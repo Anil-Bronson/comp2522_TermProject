@@ -1,0 +1,41 @@
+Implemented Features:
+-----------------------
+lesson 1: overloading
+    - cell
+
+lesson 2: Inheritance
+    - Player, Grid, Mine, Ship
+
+lesson 3: polymorphism (substitution)
+    - grid
+
+lesson 4: Final , Abstract
+    - ship
+
+lesson 5: Collections
+    - grid
+
+lesson 6: Generics
+    - grid
+
+lesson 7: Lambdas
+    - Mine
+
+lesson 8: stream
+    - grid
+
+lesson 8:
+    - Exception Handling:
+    - GameManager (handling GameException when players hit mines)
+
+lesson 9: GUI
+    -EXEMPT
+
+lesson 10: unit test
+    - BattleSweeperTest
+
+lesson 11: design pattern
+    -GameManager = Singleton
+
+lesson 12: concurrency
+    - Nada...

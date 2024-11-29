@@ -1,28 +1,59 @@
 import java.util.Scanner;
 
+/**
+ * Represents a player in the game. Each player has a name, a grid for placing ships and mines,
+ * and a method to make moves against an opponent.
+ */
 class Player {
-    protected String name;
-    protected Grid<GameObject> grid;
+    protected final  String name;
+    protected final Grid<GameObject> grid;
     private int[] lastMove = null;  // Store last move coordinates
 
-    public Player(String name, int gridSize) {
+    /**
+     * Constructs a Player with a name and a grid of the given size.
+     *
+     * @param name The name of the player.
+     * @param gridSize The size of the player's grid.
+     */
+    public Player(final String name,
+                  final int gridSize) {
+
         this.name = name;
         this.grid = new Grid<>(gridSize);
     }
 
-    // Getter for last move coordinates
+    /**
+     * Getter for the last move coordinates.
+     *
+     * @return An array containing the x and y coordinates of the last move.
+     */
     public int[] getLastMove() {
         return lastMove;  // Return the last move's coordinates
     }
 
+    /**
+     * Getter for the player's name.
+     *
+     * @return The name of the player.
+     */
     public String getName() {
         return name;
     }
 
-    public void makeMove(Grid<GameObject> opponentGrid) throws GameException {
-        Scanner scanner = new Scanner(System.in);
+    /**
+     * Allows the player to make a move against the opponent's grid.
+     * Validates the move, reveals the target cell, and handles interactions with mines and ships.
+     *
+     * @param opponentGrid The opponent's grid where the player will make a move.
+     * @throws GameException If the player hits a mine or makes an invalid move.
+     */
+    public void makeMove(final Grid<GameObject> opponentGrid) throws GameException {
+        final Scanner scanner;
+        scanner = new Scanner(System.in);
+
         System.out.print("Enter x-coordinate for your attack: ");
         int x = scanner.nextInt();
+
         System.out.print("Enter y-coordinate for your attack: ");
         int y = scanner.nextInt();
 
@@ -52,6 +83,7 @@ class Player {
 
         // If it's a mine, the player loses and the turn is over
         if (target instanceof Mine) {
+
             System.out.println("Boom! You hit a mine.");
             throw new GameException("You hit a mine and forfeited your turn.");
         }
@@ -68,8 +100,18 @@ class Player {
         }
     }
 
-    // Method to place an object (e.g., ship or mine) on the player's grid
-    public void placeObject(int x, int y, GameObject object) throws Exception {
+    /**
+     * Places an object (such as a ship or mine) at the specified coordinates on the player's grid.
+     *
+     * @param x The x-coordinate of the placement.
+     * @param y The y-coordinate of the placement.
+     * @param object The object to place (e.g., Ship or Mine).
+     * @throws Exception If the coordinates are out of bounds or the cell is already occupied.
+     */
+    public void placeObject(final int x,
+                            final int y,
+                            final GameObject object) throws Exception {
+
         // Ensure the coordinates are within bounds
         if (x < 0 || x >= grid.getSize() || y < 0 || y >= grid.getSize()) {
             throw new Exception("Coordinates out of bounds.");
@@ -84,18 +126,32 @@ class Player {
         grid.setCell(x, y, object);
     }
 
-    // Method to display the player's grid, optionally showing hidden objects
+    /**
+     * Displays the player's grid, optionally showing hidden objects based on the reveal flag.
+     *
+     * @param showObjects If true, displays hidden objects; otherwise, only reveals what is visible.
+     */
     public void displayGrid(boolean showObjects) {
+
         System.out.println(name + "'s Grid:");
         grid.display(showObjects);  // Display the grid with or without hidden objects
     }
 
-    // Check if all ships have been sunk on the opponent's grid
-    public boolean allShipsSunk(Grid<GameObject> grid) {
+    /**
+     * Checks if all ships have been sunk on the opponent's grid.
+     *
+     * @param grid The opponent's grid to check.
+     * @return true if all ships have been sunk, false otherwise.
+     */
+    public boolean allShipsSunk(final Grid<GameObject> grid) {
+
         for (int x = 0; x < grid.getSize(); x++) {
+
             for (int y = 0; y < grid.getSize(); y++) {
                 GameObject obj = grid.getCell(x, y).getValue();
+
                 if (obj instanceof Ship ship) {
+
                     if (!ship.isRevealed()) {
                         return false;  // There is at least one ship remaining
                     }
@@ -105,6 +161,11 @@ class Player {
         return true;  // All ships are sunk
     }
 
+    /**
+     * Getter for the player's grid.
+     *
+     * @return The player's grid.
+     */
     public Grid<GameObject> getGrid() {
         return grid;
     }

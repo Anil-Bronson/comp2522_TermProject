@@ -1,4 +1,4 @@
-class Ship extends GameObject {
+final class Ship extends GameObject {
     private boolean revealed;
 
     public Ship() {
