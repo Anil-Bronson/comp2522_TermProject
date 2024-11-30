@@ -4,7 +4,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -21,6 +20,7 @@ import java.util.Random;
  */
 
 public class GameController {
+
     @FXML
     private Label gameMessage;
     @FXML
@@ -72,7 +72,9 @@ public class GameController {
      * @param position the position of the button that was pressed
      * @param event the ActionEvent triggered by the button press
      */
-    private void onButtonPressed(int position, ActionEvent event) {
+    private void onButtonPressed(final int position,
+                                 final ActionEvent event) {
+
         if (gridButtons[position].isButtonValid(position, validPositions)) {
 
             ActivatedGridButton activatedButton = new ActivatedGridButton(currentRandomValue);
@@ -89,7 +91,8 @@ public class GameController {
      * @param position the position of the button to replace
      * @param activatedButton the new activated button to display
      */
-    private void replaceButton(final int position, final ActivatedGridButton activatedButton) {
+    private void replaceButton(final int position,
+                               final ActivatedGridButton activatedButton) {
         int row = position / GRID_ROWS;
         int col = position % GRID_COLS;
 
@@ -238,7 +241,9 @@ public class GameController {
      * @param message the message to be displayed in the alert
      */
 
-    private void showEndGameAlert(String title, String message) {
+    private void showEndGameAlert(final String title,
+                                  final String message) {
+
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle(title);
         alert.setHeaderText(message);

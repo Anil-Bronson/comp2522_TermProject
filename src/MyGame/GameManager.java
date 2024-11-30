@@ -7,6 +7,7 @@ class GameManager {
 
     private static GameManager instance;
     private static final int MAX_MINES = 3;
+
     GameManager(final Player player1,
                final Player player2) {
 
@@ -24,6 +25,7 @@ class GameManager {
 
 
     public void startGame() {
+
         final Scanner scanner;
         scanner = new Scanner(System.in);
 

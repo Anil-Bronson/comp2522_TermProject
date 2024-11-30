@@ -25,7 +25,9 @@ public class WordGame {
      * @param earth the World object containing country data
      * @param sc    the Scanner for user input
      */
-    public WordGame(final World earth, final Scanner sc) {
+    public WordGame(final World earth,
+                    final Scanner sc) {
+
         this.earth = earth;
         this.sc = sc;
     }

@@ -30,6 +30,7 @@ public class NumberGame extends Application {
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("numberGame/GameLayout.fxml"));
         Scene scene = new Scene(loader.load(), 700, 450);
         primaryStage.setTitle("Number Game");

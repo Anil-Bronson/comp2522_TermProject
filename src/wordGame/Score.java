@@ -34,7 +34,12 @@ public class Score {
      * @param second    the number of correct second attempts
      * @param incorrect the number of incorrect answers
      */
-    public Score(final LocalDateTime dateTime, final int games, final int first, final int second, final int incorrect) {
+    public Score(final LocalDateTime dateTime,
+                 final int games,
+                 final int first,
+                 final int second,
+                 final int incorrect) {
+
         this.dateTimePlayed          = dateTime.format(FORMATTER);
         this.numGamesPlayed          = games;
         this.numCorrectFirstAttempt  = first;
@@ -48,7 +53,8 @@ public class Score {
      * @param score    the score to append
      * @param fileName the name of the file
      */
-    public static void appendScoreToFile(final Score score, final String fileName) {
+    public static void appendScoreToFile(final Score score,
+                                         final String fileName) {
 
         try (final FileWriter writer = new FileWriter(fileName, true)) {
             writer.write(score.toString());
@@ -147,7 +153,8 @@ public class Score {
      * @param scores    a list of previous scores
      * @param userScore the user's current score
      */
-    public static void checkHighScoreAndNotify(List<Score> scores, Score userScore) {
+    public static void checkHighScoreAndNotify(final List<Score> scores,
+                                               final Score userScore) {
 
         final Score highScore;
         highScore = scores.stream()

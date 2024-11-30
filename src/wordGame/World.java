@@ -29,7 +29,7 @@ public class World {
      *
      * @param country the {@code Country} object to be added
      */
-    public void addCountry(Country country) {
+    public void addCountry(final Country country) {
         countries.put(country.getName(), country);
     }
 
@@ -39,7 +39,7 @@ public class World {
      * @param name the name of the country to retrieve
      * @return the {@code Country} object if found; {@code null} otherwise
      */
-    public Country getCountry(String name) {
+    public Country getCountry(final String name) {
         return countries.get(name);
     }
 

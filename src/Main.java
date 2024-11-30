@@ -4,9 +4,11 @@ public class Main {
 
     public static void main(final String[] args) throws Exception {
 
+        final Scanner sc;
+
         boolean stillPlaying = true;
-        Scanner sc = new Scanner(System.in);
-        World earth = new World();
+        sc = new Scanner(System.in);
+
 
         while (stillPlaying) {
 
@@ -20,6 +22,8 @@ public class Main {
             switch (input.toUpperCase()) {
 
                 case "W" -> {
+                    final World earth;
+                    earth = new World();
                     WordGame wordGame = new WordGame(earth, sc);
                     wordGame.play();
                 }
@@ -30,7 +34,8 @@ public class Main {
 
 
                 case "M" -> {
-                    GameManager gameManager = getGameManager();
+                    final GameManager gameManager;
+                    gameManager = getGameManager();
                     gameManager.startGame();
                 }
 
@@ -45,12 +50,15 @@ public class Main {
     private static GameManager getGameManager() {
 
         final int gridSize = 5;
+        final     Player player1;
+        final     Player player2;
+        final     GameManager gameManager;
 
-        // Create players
-        Player player1 = new HumanPlayer("Player 1", gridSize);
-        Player player2 = new HumanPlayer("Player 2", gridSize);
+        // Create players & game instance
+        player1     = new HumanPlayer("Player 1", gridSize);
+        player2     = new HumanPlayer("Player 2", gridSize);
+        gameManager = new GameManager(player1, player2);
 
-        GameManager gameManager = new GameManager(player1, player2);
         return gameManager;
     }
 }
